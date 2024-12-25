@@ -1,0 +1,17 @@
+double applyDiscount(double price, double Function(double) discountFunc) {
+  return discountFunc(price);
+}
+
+double seasonalDiscount(double price) => price * 0.9;  // 10% off for seasonal sale
+double bulkDiscount(double price) => price * 0.8;    // 20% off for bulk buying
+
+void main() {
+  var cart = Cart();
+  cart.addItem(Item("T-shirt", 19.99));
+  cart.addItem(Item("Jeans", 49.99));
+  cart.addItem(Item("Sneakers", 79.99));
+
+  print("Total with seasonal discount: \$${cart.calculateTotal()}");
+  var discountedPrice = applyDiscount(cart.items[0].price, seasonalDiscount);  // Applying seasonal discount to the first item
+  print("Discounted price for T-shirt: \$${discountedPrice}");
+}
